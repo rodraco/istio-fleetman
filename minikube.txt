@@ -1,0 +1,28 @@
+install docker (see LinuxEnvInstall.txt)
+
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+chmod+x  minikube 
+chmod +x minikube 
+sudo mv minikube /usr/local/bin/
+minikube config set driver docker
+minikube start --memory 4096 --cpus 4
+
+## Enable the Kubernetes dashboard
+minikube dashboard
+    - This will enable the dashboard add-on, and open the proxy in the default web browser.
+minikube dashboard --url 
+    - this will show the dashboard url, without opening it
+minikube addons enable metrics-server -> required by the dashboard url for more reporting
+
+# To uninstall dashboard: 
+minikube addons disable dashboard  
+kubectl get secret,sa,role,rolebinding,services,deployments --namespace=kube-system | grep dashboard
+    - this will retrieve all dashboard objects
+    - after that and teh addon disabled, delete all kubernetes objects from above 
+
+# to be able to access services in minikube with docker driver:
+- kubectl port-forward webapp 30080:80 (kubectl port-forward <service_name> <local_port>:<service_port>)
+or
+- minikube service <service_name> - will display an output stating "Starting tunnel..."
+
+### Minikube with VirtualBox - to access minikube vm machine, uaename: docker and passwd: tcuser - defaults
