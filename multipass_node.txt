@@ -1,0 +1,26 @@
+sudo snap install microk8s --classic
+hostname
+sudo microk8s join 10.230.55.218:25000/b218c3fbb0c9b6b297667a80d116d7f7/ee166fe855f3 --worker
+sudo microk8s join 10.230.55.218:25000/b13235b6e3c6393eee08ceb5703b2200/ee166fe855f3 --worker
+exit
+microk8s join 10.230.55.1:25000/79f97b98a9c6fbd733ccea47538529a1/5d3266739027 --worker
+microk8s join 10.230.55.1:25000/3c8eed43a6815d225bba440f677a5edf/5d3266739027 --worker
+exit
+clear
+kubectl
+microk8s
+microk8s join 10.230.55.1:25000/af5696d6e2e6385accf97757a5d5403c/5d3266739027
+sudo usermod -a -G microk8s ubuntu
+sudo chown -f -R ubuntu ~/.kube
+microk8s join 10.230.55.1:25000/af5696d6e2e6385accf97757a5d5403c/5d3266739027
+ls -l ~/.kube
+sudo ls -l ~/.kube
+mkdir ~/.kube
+microk8s join 10.230.55.1:25000/af5696d6e2e6385accf97757a5d5403c/5d3266739027
+ls -la
+ls -la .kube/
+newgrp microk8s
+exit
+history
+#########################
+on master - microk8s add-node

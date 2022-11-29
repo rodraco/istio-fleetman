@@ -1,0 +1,78 @@
+sudo apt-get remove docker docker-engine docker.io containerd runc
+sudo apt-get remove docker docker.io containerd runc
+
+sudo rm /etc/apt/preferences.d/nosnap.pref - mint only
+
+sudo apt update
+sudo apt install snapd
+sudo reboot
+sudo snap install multipass
+sudo usermod -aG kvm $USER
+sudo reboot
+multipass info
+multipass find
+multipass list
+multipass info primary
+sudo apt-get install     ca-certificates     curl     gnupg     lsb-release
+sudo apt autoremove 
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+lsb-release 
+lsb_release 
+lsb_release -cs
+lsb_release -name
+lsb_release -h
+lsb_release -c
+less /etc/apt/sources.list.d/docker.list
+sudo vim /etc/apt/sources.list.d/docker.list
+sudo apt-get update
+echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  focal stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo vim /etc/apt/sources.list.d/docker.list
+sudo apt-get update
+apt-cache madison docker-ce
+sudo apt-get install docker-ce=5:20.10.18~3-0~ubuntu-focal docker-ce-cli=5:20.10.18~3-0~ubuntu-focal containerd.io docker-compose-plugin
+sudo service docker start
+sudo docker run hello-world
+sudo groupadd docker
+sudo usermod -aG docker $USER
+sudo reboot
+sudo systemctl enable docker.service
+sudo systemctl enable containerd.service
+sudo systemctl status docker
+sudo systemctl status containerd
+docker run hello-world
+docker login
+#################### Microk8s an multipass nodes on main machine ##############
+less .docker/config.json 
+sudo snap install microk8s --classic
+sudo usermod -a -G microk8s $USER
+echo "alias kubectl='microk8s.kubectl'" >> ~/.bashrc 
+reboot
+sudo apt install -y jq
+mkdir /home/rodraco/.kube
+microk8s kubectl config view --raw > $HOME/.kube/config
+less ~/.kube/config 
+microk8s enable dns
+multipass launch 22.04 --name k8sn1
+multipass launch 22.04 --name k8sn2
+multipass stop k8sn1
+multipass stop k8sn2
+multipass set local.k8sn1.cpus=2
+multipass set local.k8sn2.cpus=2
+multipass set local.k8sn1.memory=3G
+multipass set local.k8sn2.memory=3G
+multipass set local.k8sn1.disk=10G
+multipass set local.k8sn2.disk=10G
+multipass start k8sn1
+multipass start k8sn2
+microk8s add-node #Will display the token join command 
+## Download helm binary release - then do:
+sudo mv ~/Downloads/linux-amd64/helm /usr/local/bin/ 
+helm version
+helm repo add bitnami https://charts.bitnami.com/bitnami
+
+
